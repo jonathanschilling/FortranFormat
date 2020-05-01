@@ -9,7 +9,7 @@ or the instance's `read` methods to input data.
 
 # Example 1
 
-- [Source code](https://github.com/jonathanschilling/FortranFormat/blob/master/src/main/java/org/j_paine/formatter/FormatDemo1.java)
+- [Source code](https://github.com/jonathanschilling/FortranFormat/blob/master/src/main/java/examples/FormatDemo1.java)
 
 The argument to the constructor `Formatter(...)` is a format string.
 The constructor parses it and converts it into an internal representation.
@@ -31,13 +31,13 @@ Formatter f = new Formatter( "I3, F12.7, E12.7/" );
 
 # Example 2
 
-- [Source code](https://github.com/jonathanschilling/FortranFormat/blob/master/src/main/java/org/j_paine/formatter/FormatDemo2.java)
+- [Source code](https://github.com/jonathanschilling/FortranFormat/blob/master/src/main/java/examples/FormatDemo2.java)
 
 For writing single numbers, there is a simpler `write` method which takes a single number and a `PrintStream`. 
 
 # Example 3
 
-- [Source code](https://github.com/jonathanschilling/FortranFormat/blob/master/src/main/java/org/j_paine/formatter/FormatDemo3.java)
+- [Source code](https://github.com/jonathanschilling/FortranFormat/blob/master/src/main/java/examples/FormatDemo3.java)
 
 This example demonstrates input.
 We construct a new `Formatter` as before.
@@ -47,7 +47,7 @@ The former would be thrown if, for example, a putative number contained illegal 
 
 # Example 4
 
-- [Source code](https://github.com/jonathanschilling/FortranFormat/blob/master/src/main/java/org/j_paine/formatter/FormatDemo4.java)
+- [Source code](https://github.com/jonathanschilling/FortranFormat/blob/master/src/main/java/examples/FormatDemo4.java)
 
 This example is similar to example 2, but for input.
 There is a simpler `read` method that takes a `DataInputStream` and returns the single object it has read.
@@ -56,7 +56,7 @@ However, that is only for purposes of demonstration, and reading from a `DataInp
 
 # Example 5
 
-- [Source code](https://github.com/jonathanschilling/FortranFormat/blob/master/src/main/java/org/j_paine/formatter/FormatDemo5.java)
+- [Source code](https://github.com/jonathanschilling/FortranFormat/blob/master/src/main/java/examples/FormatDemo5.java)
 
 This example enables us to read into a `Hashtable`.
 We pass an array of strings to read.
@@ -64,7 +64,7 @@ When reading the i'th item `i`<sub>i</sub> from input, read looks up the i'th ke
 
 # Example 6
 
-- [Source code](https://github.com/jonathanschilling/FortranFormat/blob/master/src/main/java/org/j_paine/formatter/FormatDemo6.java)
+- [Source code](https://github.com/jonathanschilling/FortranFormat/blob/master/src/main/java/examples/FormatDemo6.java)
 
 This example uses a `FormatMap` to translate text on input.
 If you create a `FormatMap` and pass it to your `Formatter`'s `setFormatMap` method,
@@ -78,7 +78,7 @@ So your `FormatMap`'s `getMapping` method could, for example, check for `X`'s in
 
 # Example 7
 
-- [Source code](https://github.com/jonathanschilling/FortranFormat/blob/master/src/main/java/org/j_paine/formatter/FormatDemo7.java)
+- [Source code](https://github.com/jonathanschilling/FortranFormat/blob/master/src/main/java/examples/FormatDemo7.java)
 
 This example demonstrates how to check for end of file.
 If the format reading routines discover end of file immediately after starting the read,
@@ -92,7 +92,7 @@ However, if there's no data at all, the `EndOfFileWhenStartingReadException` can
 
 # Example 8
 
-- [Source code](https://github.com/jonathanschilling/FortranFormat/blob/master/src/main/java/org/j_paine/formatter/FormatDemo8.java)
+- [Source code](https://github.com/jonathanschilling/FortranFormat/blob/master/src/main/java/examples/FormatDemo8.java)
 
 This example demonstrates a different way to check for end of file.
 Here, we just use the built-in method `available` to terminate the loop. 
