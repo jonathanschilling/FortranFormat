@@ -39,9 +39,9 @@
 							<goal>javacc</goal>
 						</goals>
 						<configuration>
+							<jdkVersion>1.8</jdkVersion>
 							<javadocFriendlyComments>true</javadocFriendlyComments>
-							<packageName>org.j_paine.formatter</packageName>
-							<!-- <sourceDirectory>src/main/java/javacc</sourceDirectory> -->
+							<isStatic>false</isStatic>
 							<outputDirectory>${project.basedir}/src/main/java-generated</outputDirectory>
 						</configuration>
 					</execution>
