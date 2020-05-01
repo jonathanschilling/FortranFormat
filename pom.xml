@@ -2,20 +2,20 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
 		<groupId>de.labathome</groupId>
 		<artifactId>de-labathome-parent</artifactId>
 		<version>1.0.0</version>
 	</parent>
-	
+
 	<artifactId>FortranFormat</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
-	
+
 	<name>FortranFormat</name>
 	<description>The Fortran format package by Jocelyn Ireson-Paine</description>
-	
+
 	<url>${jonathanschilling.git.url}${project.name}</url>
 	<scm>
 		<connection>${jonathanschilling.git.root}${project.name}.git</connection>
@@ -26,5 +26,16 @@
 		<url>${jonathanschilling.git.url}${project.name}/issues</url>
 		<system>GitLab Issues</system>
 	</issueManagement>
-	
+
+	<build>
+
+		<plugins>
+			<plugin>
+				<groupId>net.java.dev.javacc</groupId>
+				<artifactId>javacc</artifactId>
+				<version>7.0.6</version>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>
