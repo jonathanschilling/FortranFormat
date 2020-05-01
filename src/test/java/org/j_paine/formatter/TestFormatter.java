@@ -13,7 +13,21 @@ import java.util.Vector;
 
 import org.junit.jupiter.api.Test;
 
-public class FormatTester01 {
+public class TestFormatter {
+	
+	public static final String formatIntoString(Formatter f, Object o) throws UnsupportedEncodingException, OutputFormatException {
+		final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+	    final String utf8 = StandardCharsets.UTF_8.name();
+	    try (PrintStream ps = new PrintStream(baos, true, utf8)) {
+	    	f.write(o, ps);
+	    }
+	    return baos.toString(utf8);
+	}
+	
+	public static final Object unformatFromString(Formatter f, String s) throws InputFormatException {
+		DataInputStream in = new DataInputStream(new ByteArrayInputStream(s.getBytes()));
+		return f.read(in);
+	}
 	
 	@Test
 	public void testToString() throws InvalidFormatException {
@@ -132,17 +146,56 @@ public class FormatTester01 {
 		});
 	}
 	
-	public static final String formatIntoString(Formatter f, Object o) throws UnsupportedEncodingException, OutputFormatException {
-		final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-	    final String utf8 = StandardCharsets.UTF_8.name();
-	    try (PrintStream ps = new PrintStream(baos, true, utf8)) {
-	    	f.write(o, ps);
-	    }
-	    return baos.toString(utf8);
+	@Test
+	public void testFiveIntegers() throws InvalidFormatException, InputFormatException {
+		Formatter f = new Formatter("5I5");
+		
+		assertEquals("[Formatter 5(I5)]", f.toString());
+		
+		Vector v = new Vector();
+		DataInputStream in = new DataInputStream(TestFormatter.class.getResourceAsStream("/FormatTester2.dat"));
+		f.read(v, in);
+		
+		Vector expected = new Vector();
+		expected.add(new Long(12345));
+		expected.add(new Long(67890));
+		expected.add(new Long(34567));
+		expected.add(new Long(98765));
+		expected.add(new Long(67890));
+		
+		assertEquals(expected.size(), v.size());
+		for (int i=0; i<expected.size(); ++i) {
+			assertEquals(expected.get(i), v.get(i));
+		}
 	}
 	
-	public static final Object unformatFromString(Formatter f, String s) throws InputFormatException {
-		DataInputStream in = new DataInputStream(new ByteArrayInputStream(s.getBytes()));
-		return f.read(in);
+	@Test
+	public void testNewline() throws InvalidFormatException {
+		Formatter f = new Formatter("/");
+		assertEquals("[Formatter /]", f.toString());
+
+		Formatter f2 = new Formatter(",/,");
+		assertEquals("[Formatter /]", f2.toString());
 	}
+	
+	@Test
+	public void testEndOfLineInData() throws InvalidFormatException {
+		Formatter f = new Formatter("5I5");
+		
+		assertEquals("[Formatter 5(I5)]", f.toString());
+		
+		Vector v = new Vector();
+		DataInputStream in = new DataInputStream(FormatTester04.class.getResourceAsStream("/FormatTester4.dat"));
+
+		assertThrows(DataMissingOnReadException.class, () -> {
+			f.read(v, in);
+		});
+	}
+	
+	
+	
+	
+	
+	
+	
 }
