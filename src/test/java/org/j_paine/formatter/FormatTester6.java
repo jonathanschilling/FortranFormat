@@ -20,7 +20,7 @@ public class FormatTester6
       Vector v = new Vector();
 
       DataInputStream in =
-        new DataInputStream( new FileInputStream("FormatTester6.dat") );
+        new DataInputStream( FormatTester6.class.getResourceAsStream("/FormatTester6.dat") );
 
       f.read( v, in );
       System.out.println( v );
@@ -28,9 +28,9 @@ public class FormatTester6
     catch ( InvalidFormatException e ) {
       System.out.println( e );
     }
-    catch ( IOException e ) {
-      System.out.println( e );
-    }
+//    catch ( IOException e ) {
+//      System.out.println( e );
+//    }
     catch ( InputFormatException e ) {
       System.out.println( e );
     }
