@@ -177,7 +177,7 @@ Each group contains a format element (possibly repeated), and may have slashes o
 But you can separate slashes and strings by commas if you want: `2I5,/,'next line',3I5/,/,/,3(F14.5)`.
 
 Formally, the grammar is given [here](https://github.com/jonathanschilling/FortranFormat/blob/master/src/main/javacc/FormatParser.jj),
-defined by [Sun's JavaCC parser-generator](https://javacc.org/). 
+defined by the [JavaCC parser-generator](https://javacc.org/). 
 
 # How data is input
 
@@ -248,7 +248,6 @@ I ([J. Schilling](https://github.com/jonathanschilling)) took the original sourc
 
 Planned actions include
 1. to replace the `CJFormat` class by calls to `java.lang.String.format`
-2. to split the `Formatter` class into the contained classes
 
 # Maven coordinates
 
