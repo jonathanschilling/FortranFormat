@@ -221,10 +221,8 @@ All these format classes have read and write methods.
 At the top level, these just deal with sequencing and repetition of elements.
 Once we get down to class `FormatIOElement`, they start defining the IO conversions specific to each kind of element - an `Iw`, an `Fw.d`, etc.
 
-To write elements, we convert them to strings, using methods defined in the class `CJFormat`.
-This was taken from a public implementation off 'printf' written and placed on the Web by Gary Cornell and Cay S. Horstmann, for their "Core Java" book.
+To write elements, they are converted to strings using `java.lang.String.format(Locale.ENGLISH, ...)`.
 We check that the strings aren't too large to fit in the field, and throw an exception if they are.
-I chose this one over the other versions of printf available because the Java FAQ states that it is the only implementation known to deal with all formats correctly.
 
 To read elements, we use a buffered input stream which contains its own input buffer and buffer pointer.
 This is class `InputStreamAndBuffer`. We extract an appropriate width slice from the buffer.
@@ -245,6 +243,7 @@ I ([J. Schilling](https://github.com/jonathanschilling)) took the original sourc
 1. sorted the original source code into a Maven-compatible folder structure, 
 2. used [javacc](https://github.com/javacc/javacc) via the [maven-javacc-plugin](https://github.com/mojohaus/javacc-maven-plugin) to auto-generate the parser code,
 3. included the test output as resources and adjusted the test classes accordingly.
+4. replaced the `CJFormat` class by direct calls to `java.lang.String.format()`. 
 
 # Maven coordinates
 
