@@ -1,6 +1,7 @@
 package org.j_paine.formatter;
 
 import java.io.ByteArrayInputStream;
+import java.util.Locale;
 
 /**
  * This class represents an Iw format element.
@@ -12,21 +13,28 @@ public class FormatI extends FormatIOElement {
 	}
 
 	public String convertToString(Object o, int vecptr) throws IllegalObjectOnWriteException, NumberTooWideOnWriteException {
-		String s;
 
 		/* Convert the number to a string. */
 		if (o instanceof Integer || o instanceof Long) {
-			CJFormat cjf = new CJFormat();
-			cjf.setWidth(getWidth());
-			cjf.setPre("");
-			cjf.setPost("");
-			cjf.setLeadingZeroes(false);
-			cjf.setShowPlus(false);
-			cjf.setAlternate(false);
-			cjf.setShowSpace(false);
-			cjf.setLeftAlign(false);
-			cjf.setFmt('i');
-			s = cjf.form(((Number) o).longValue());
+			
+//			CJFormat cjf = new CJFormat();
+//			cjf.setWidth(getWidth());
+//			cjf.setPre("");
+//			cjf.setPost("");
+//			cjf.setLeadingZeroes(false);
+//			cjf.setShowPlus(false);
+//			cjf.setAlternate(false);
+//			cjf.setShowSpace(false);
+//			cjf.setLeftAlign(false);
+//			cjf.setFmt('i');
+//			String s = cjf.form(((Number) o).longValue());
+			
+			String formatString = "%"
+					+ String.valueOf(getWidth())
+					+ "d";
+			
+			/* use ENGLISH locale as default since it predictably produces '.' as decimal separator */
+			String s = String.format(Locale.ENGLISH, formatString, ((Number)o).longValue());
 
 			/* Throw an exception if the string won't fit. */
 			if (s.length() > getWidth())

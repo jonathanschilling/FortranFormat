@@ -1,6 +1,7 @@
 package org.j_paine.formatter;
 
 import java.io.ByteArrayInputStream;
+import java.util.Locale;
 
 /**
  * This class represents an Ew.d format element. Numbers should be output as
@@ -16,30 +17,39 @@ public class FormatE extends FormatIOElement {
 	}
 
 	public String convertToString(Object o, int vecptr) throws IllegalObjectOnWriteException, NumberTooWideOnWriteException {
-		String s;
 
 		/* Convert the number to a string. */
 		if (o instanceof Integer || o instanceof Long || o instanceof Float || o instanceof Double) {
-			CJFormat cjf = new CJFormat();
-			cjf.setWidth(getWidth());
-			cjf.setPrecision(this.d);
-			cjf.setPre("");
-			cjf.setPost("");
-			cjf.setLeadingZeroes(false);
-			cjf.setShowPlus(false);
-			cjf.setAlternate(false);
-			cjf.setShowSpace(false);
-			cjf.setLeftAlign(false);
-			cjf.setFmt('E');
-			s = cjf.form(((Number) o).doubleValue());
-
+			
+//			CJFormat cjf = new CJFormat();
+//			cjf.setWidth(getWidth());
+//			cjf.setPrecision(this.d);
+//			cjf.setPre("");
+//			cjf.setPost("");
+//			cjf.setLeadingZeroes(false);
+//			cjf.setShowPlus(false);
+//			cjf.setAlternate(false);
+//			cjf.setShowSpace(false);
+//			cjf.setLeftAlign(false);
+//			cjf.setFmt('E');
+//			String s = cjf.form(((Number) o).doubleValue());
+			
+			String formatString = "%"
+					+ String.valueOf(getWidth()) + "." + String.valueOf(this.d)
+					+ "E";
+			
+			/* use ENGLISH locale as default since it predictably produces '.' as decimal separator */
+			String s = String.format(Locale.ENGLISH, formatString, ((Number)o).doubleValue());
+			
 			/* Throw an exception if the string won't fit. */
-			if (s.length() > getWidth())
+			if (s.length() > getWidth()) {
 				throw new NumberTooWideOnWriteException((Number) o, vecptr, this.toString());
-			else
+			} else {
 				return s;
-		} else
+			}
+		} else {
 			throw new IllegalObjectOnWriteException(o, vecptr, this.toString());
+		}
 	}
 
 	/**

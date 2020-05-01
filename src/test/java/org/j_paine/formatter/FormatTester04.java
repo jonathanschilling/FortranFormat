@@ -3,7 +3,7 @@ package org.j_paine.formatter;
 import java.io.DataInputStream;
 import java.util.Vector;
 
-public class FormatTester10 {
+public class FormatTester04 {
 	
 	public static void main(String[] args) {
 		try {
@@ -13,17 +13,10 @@ public class FormatTester10 {
 
 			Vector v = new Vector();
 
-			DataInputStream in = new DataInputStream(FormatTester10.class.getResourceAsStream("/FormatTester10.dat"));
+			DataInputStream in = new DataInputStream(FormatTester04.class.getResourceAsStream("/FormatTester4.dat"));
 
-			try {
-				while (true) {
-					f.read(v, in);
-					System.out.println(v);
-				}
-			} catch (EndOfFileWhenStartingReadException e) {
-				System.out.println(e);
-				System.out.println(v);
-			}
+			f.read(v, in);
+			System.out.println(v);
 		} catch (InvalidFormatException e) {
 			System.out.println(e);
 		} catch (InputFormatException e) {

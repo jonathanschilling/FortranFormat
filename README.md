@@ -246,9 +246,6 @@ I ([J. Schilling](https://github.com/jonathanschilling)) took the original sourc
 2. used [javacc](https://github.com/javacc/javacc) via the [maven-javacc-plugin](https://github.com/mojohaus/javacc-maven-plugin) to auto-generate the parser code,
 3. included the test output as resources and adjusted the test classes accordingly.
 
-Planned actions include
-1. to replace the `CJFormat` class by calls to `java.lang.String.format`
-
 # Maven coordinates
 
 The final artifact will be available on Maven central:
