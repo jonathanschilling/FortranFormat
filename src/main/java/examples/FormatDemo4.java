@@ -1,8 +1,12 @@
-package org.j_paine.formatter;
+package examples;
 /* FormatDemo4.java */
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
+
+import org.j_paine.formatter.Formatter;
+import org.j_paine.formatter.InputFormatException;
+import org.j_paine.formatter.InvalidFormatException;
 
 public class FormatDemo4
 {

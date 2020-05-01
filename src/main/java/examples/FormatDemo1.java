@@ -1,8 +1,12 @@
-package org.j_paine.formatter;
+package examples;
 /* FormatDemo1.java */
 
 
 import java.util.Vector;
+
+import org.j_paine.formatter.Formatter;
+import org.j_paine.formatter.InvalidFormatException;
+import org.j_paine.formatter.OutputFormatException;
 
 
 public class FormatDemo1

@@ -1,6 +1,9 @@
-package org.j_paine.formatter;
+package examples;
 /* FormatDemo2.java */
 
+import org.j_paine.formatter.Formatter;
+import org.j_paine.formatter.InvalidFormatException;
+import org.j_paine.formatter.OutputFormatException;
 
 public class FormatDemo2
 {

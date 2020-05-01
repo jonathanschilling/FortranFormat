@@ -1,10 +1,14 @@
-package org.j_paine.formatter;
+package examples;
 /* FormatDemo5.java */
 
 
 import java.io.DataInputStream;
 import java.util.Hashtable;
 import java.util.Vector;
+
+import org.j_paine.formatter.Formatter;
+import org.j_paine.formatter.InputFormatException;
+import org.j_paine.formatter.InvalidFormatException;
 
 
 public class FormatDemo5
