@@ -41,8 +41,9 @@ public class FormatI extends FormatIOElement {
 				throw new NumberTooWideOnWriteException((Number) o, vecptr, this.toString());
 			else
 				return s;
-		} else
+		} else {
 			throw new IllegalObjectOnWriteException(o, vecptr, this.toString());
+		}
 	}
 
 	/**

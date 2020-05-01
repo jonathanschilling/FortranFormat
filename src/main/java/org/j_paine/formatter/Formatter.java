@@ -49,9 +49,14 @@ public class Formatter {
 	}
 
 	public void write(Object o, PrintStream out) throws OutputFormatException {
-		Vector v = new Vector();
-		v.addElement(o);
-		write(v, out);
+		if (o instanceof Vector) {
+			// forgot to cast or cast not possible
+			this.write((Vector)o, out);
+		} else {
+			Vector v = new Vector();
+			v.addElement(o);
+			write(v, out);
+		}
 	}
 
 	public void read(Vector v, DataInputStream in) throws InputFormatException {
