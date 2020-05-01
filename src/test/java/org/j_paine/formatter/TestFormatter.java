@@ -185,14 +185,94 @@ public class TestFormatter {
 		assertEquals("[Formatter 5(I5)]", f.toString());
 		
 		Vector v = new Vector();
-		DataInputStream in = new DataInputStream(FormatTester04.class.getResourceAsStream("/FormatTester4.dat"));
+		DataInputStream in = new DataInputStream(TestFormatter.class.getResourceAsStream("/FormatTester4.dat"));
 
 		assertThrows(DataMissingOnReadException.class, () -> {
 			f.read(v, in);
 		});
 	}
 	
+	@Test
+	public void testMissingEndOfLine() throws InvalidFormatException {
+		Formatter f = new Formatter("5(5I5/)");
+		
+		assertEquals("[Formatter 5(5(I5), /)]", f.toString());
+		
+		Vector v = new Vector();
+		DataInputStream in = new DataInputStream(TestFormatter.class.getResourceAsStream("/FormatTester5.dat"));
+		assertThrows(LineMissingOnReadException.class, () -> {
+			f.read(v, in);
+		});
+	}
 	
+	@Test
+	public void testEndOfDataDuringRead() throws InvalidFormatException {
+		Formatter f = new Formatter("5(5I5/)");
+		
+		assertEquals("[Formatter 5(5(I5), /)]", f.toString());
+		
+		Vector v = new Vector();
+		DataInputStream in = new DataInputStream(TestFormatter.class.getResourceAsStream("/FormatTester6.dat"));
+		assertThrows(DataMissingOnReadException.class, () -> {
+			f.read(v, in);
+		});
+	}
+	
+	@Test
+	public void testLineMissingDuringRead() throws InvalidFormatException {
+		Formatter f = new Formatter("5(5I5/)");
+		
+		assertEquals("[Formatter 5(5(I5), /)]", f.toString());
+		
+		Vector v = new Vector();
+		DataInputStream in = new DataInputStream(TestFormatter.class.getResourceAsStream("/FormatTester7.dat"));
+		assertThrows(LineMissingOnReadException.class, () -> {
+			f.read(v, in);
+		});
+	}
+	
+	@Test
+	public void testMultiLineMultiNumberPerLineReading() throws InvalidFormatException, InputFormatException {
+		Formatter f = new Formatter("5I5,4(/5I5)");
+		
+		assertEquals("[Formatter 5(I5), 4(/, 5(I5))]", f.toString());
+		
+		Vector v = new Vector();
+		DataInputStream in = new DataInputStream(TestFormatter.class.getResourceAsStream("/FormatTester8.dat"));
+		f.read(v, in);
+		
+		Vector expected = new Vector();
+		expected.add(new Long(12345));
+		expected.add(new Long(67890));
+		expected.add(new Long(34567));
+		expected.add(new Long(98765));
+		expected.add(new Long(67890));
+		expected.add(new Long(22345));
+		expected.add(new Long(67890));
+		expected.add(new Long(34567));
+		expected.add(new Long(98765));
+		expected.add(new Long(67890));
+		expected.add(new Long(32345));
+		expected.add(new Long(67890));
+		expected.add(new Long(34567));
+		expected.add(new Long(98765));
+		expected.add(new Long(67890));
+		expected.add(new Long(42345));
+		expected.add(new Long(67890));
+		expected.add(new Long(34567));
+		expected.add(new Long(98765));
+		expected.add(new Long(67890));
+		expected.add(new Long(52345));
+		expected.add(new Long(67890));
+		expected.add(new Long(34567));
+		expected.add(new Long(98765));
+		expected.add(new Long(67890));
+		
+		assertEquals(expected.size(), v.size());
+		for (int i=0; i<expected.size(); ++i) {
+			assertEquals(expected.get(i), v.get(i));
+		}
+	}
 	
 	
 	
