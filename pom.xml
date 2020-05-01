@@ -28,14 +28,32 @@
 	</issueManagement>
 
 	<build>
-
 		<plugins>
 			<plugin>
-				<groupId>net.java.dev.javacc</groupId>
-				<artifactId>javacc</artifactId>
-				<version>7.0.6</version>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>javacc-maven-plugin</artifactId>
+				<version>2.6</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>javacc</goal>
+						</goals>
+						<configuration>
+							<javadocFriendlyComments>true</javadocFriendlyComments>
+							<packageName>org.j_paine.formatter</packageName>
+							<!-- <sourceDirectory>src/main/java/javacc</sourceDirectory> -->
+							<outputDirectory>${project.build.directory}/src/main/java-generated</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>net.java.dev.javacc</groupId>
+						<artifactId>javacc</artifactId>
+						<version>7.0.6</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
