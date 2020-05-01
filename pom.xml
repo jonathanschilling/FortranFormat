@@ -42,7 +42,7 @@
 							<javadocFriendlyComments>true</javadocFriendlyComments>
 							<packageName>org.j_paine.formatter</packageName>
 							<!-- <sourceDirectory>src/main/java/javacc</sourceDirectory> -->
-							<outputDirectory>${project.build.directory}/src/main/java-generated</outputDirectory>
+							<outputDirectory>${project.basedir}/src/main/java-generated</outputDirectory>
 						</configuration>
 					</execution>
 				</executions>
