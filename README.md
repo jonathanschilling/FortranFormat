@@ -242,8 +242,9 @@ In the first case, we read items sequentially into the vector, again converting 
 I ([J. Schilling](https://github.com/jonathanschilling)) took the original source code and
 1. sorted the original source code into a Maven-compatible folder structure, 
 2. used [javacc](https://github.com/javacc/javacc) via the [maven-javacc-plugin](https://github.com/mojohaus/javacc-maven-plugin) to auto-generate the parser code,
-3. included the test output as resources and adjusted the test classes accordingly.
-4. replaced the `CJFormat` class by direct calls to `java.lang.String.format()`. 
+3. included the test output as resources and adjusted the test classes accordingly,
+4. replaced the `CJFormat` class by direct calls to `java.lang.String.format()`,
+5. transformed the stand-alone tests into JUnit 5 tests and combined them into `TestFormatter`.
 
 # Maven coordinates
 
