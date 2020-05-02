@@ -274,8 +274,110 @@ public class TestFormatter {
 		}
 	}
 	
+	@Test
+	public void testStringReading() throws InvalidFormatException, InputFormatException {
+		Formatter f = new Formatter("A10'abc',A2'xy',A4");
+		
+		assertEquals("[Formatter A10, 'abc', A2, 'xy', A4]", f.toString());
+		
+		Vector v = new Vector();
+		DataInputStream in = new DataInputStream(TestFormatter.class.getResourceAsStream("/FormatTester9.dat"));
+		f.read(v, in);
+		
+		Vector expected = new Vector();
+		expected.add("1234567890");
+		expected.add("AB");
+		expected.add("FOUR");
+		
+		assertEquals(expected.size(), v.size());
+		for (int i=0; i<expected.size(); ++i) {
+			assertEquals(expected.get(i), v.get(i));
+		}
+	}
 	
+	@Test
+	public void testSuccessiveReading() throws InvalidFormatException, InputFormatException {
+		Formatter f = new Formatter("5I5");
+		
+		assertEquals("[Formatter 5(I5)]", f.toString());
+		
+		Vector v = new Vector();
+		DataInputStream in = new DataInputStream(TestFormatter.class.getResourceAsStream("/FormatTester10.dat"));
+		
+		// 1
+		f.read(v, in);
+		
+		Vector expected = new Vector();
+		expected.add(new Long(12345));
+		expected.add(new Long(67890));
+		expected.add(new Long(34567));
+		expected.add(new Long(98765));
+		expected.add(new Long(67890));
 	
-	
-	
+		assertEquals(expected.size(), v.size());
+		for (int i=0; i<expected.size(); ++i) {
+			assertEquals(expected.get(i), v.get(i));
+		}
+		
+		// 2
+		f.read(v, in);
+		
+		expected.add(new Long(22345));
+		expected.add(new Long(67890));
+		expected.add(new Long(34567));
+		expected.add(new Long(98765));
+		expected.add(new Long(67890));
+		
+		assertEquals(expected.size(), v.size());
+		for (int i=0; i<expected.size(); ++i) {
+			assertEquals(expected.get(i), v.get(i));
+		}
+		
+		// 3
+		f.read(v, in);
+		
+		expected.add(new Long(32345));
+		expected.add(new Long(67890));
+		expected.add(new Long(34567));
+		expected.add(new Long(98765));
+		expected.add(new Long(67890));
+		
+		assertEquals(expected.size(), v.size());
+		for (int i=0; i<expected.size(); ++i) {
+			assertEquals(expected.get(i), v.get(i));
+		}
+		
+		// 4
+		f.read(v, in);
+		
+		expected.add(new Long(42345));
+		expected.add(new Long(67890));
+		expected.add(new Long(34567));
+		expected.add(new Long(98765));
+		expected.add(new Long(67890));
+		
+		assertEquals(expected.size(), v.size());
+		for (int i=0; i<expected.size(); ++i) {
+			assertEquals(expected.get(i), v.get(i));
+		}
+		
+		// 5
+		f.read(v, in);
+		
+		expected.add(new Long(52345));
+		expected.add(new Long(67890));
+		expected.add(new Long(34567));
+		expected.add(new Long(98765));
+		expected.add(new Long(67890));
+		
+		assertEquals(expected.size(), v.size());
+		for (int i=0; i<expected.size(); ++i) {
+			assertEquals(expected.get(i), v.get(i));
+		}
+		
+		// only five lines in the input file, so expect to fail here
+		assertThrows(EndOfFileWhenStartingReadException.class, () -> {
+			f.read(v, in);
+		});
+	}
 }
