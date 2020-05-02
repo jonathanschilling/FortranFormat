@@ -248,7 +248,7 @@ I ([J. Schilling](https://github.com/jonathanschilling)) took the original sourc
 
 # Maven coordinates
 
-The final artifact will be available on Maven central:
+The corresponding artifact is available on Maven central:
 
 ```
 <dependency>
